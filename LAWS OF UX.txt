@@ -1,0 +1,51 @@
+LAWS OF UX:
+-----------
+-----------
+
+
+
+JAKOB: 
+------
+
+	- Jakob's LAW: Users spend most of their time on other sites, and they prefer your site to work the same way as all the other sites they already know.
+
+		+ Ecommerce sites like Etsy leverage preexisting mental models to keep customers focused on purchasing products rather than on learning new interaction patterns
+
+		+ In contrast, failure to consider the mental model a user has formed can result in confusion and frustration
+
+		+ there’s certainly a time and a place for innovation
+
+
+
+FITT:
+-----
+
+	- FITT's LAW:  The time to acquire a target is a function of the distance to and size of the target.
+
+		+ Navigation should be painless and straightforward, requiring minimal effort.
+		+ as the size of the object increases, the time to reach it goes down.
+		+ The spacing between interactive elements is also an important consideration.
+		+ 
+
+HICK:
+-----
+
+	- HICK's LAW: The time it takes to make a decision increases with the number and complexity of choices available.
+
+		+ Minimiza the choices when response time is critical
+		+ Break complex tasks into smaller steps to decrease cognitive load.
+		+ Avoid overwhelming users by highlighting recommended options
+		+ Use Profressive onboarding 
+		+ be careful not to simplfy to the point of abstraction
+		+ Instead of dropping users into a fully featured app after subjecting them to a few onboarding slides
+
+
+MILLER:
+-------
+
+
+	- Miller's Law:the average person can only keep 7 (+-2) items in their working memory.
+		
+		+ Organize content into smaller chunks to help users process and memorize
+		+ Short term memory is variable (assume trash, hope for perfect)
+		+ 

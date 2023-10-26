@@ -1,0 +1,17 @@
+POINTERS:
+		
+	- memory is made of an address and a value
+	- int x = 4 => the value of 4 at the address 0X1000
+	- if I put 0X1000 as a value, it'll point to the 4: i.e int *pX = &x;
+
+the problem comes with the syntaxing: 
+		
+	- int x = 4 => integer named x is set to 4;
+	- int * pX = &x => integer pointer named pX is set to the address of x;
+	- int y = *pX => integer y is set to the thing pointed by pX
+
+WHY?
+
+	- because we have to.
+	- static vs dynamic memory allocation
+	

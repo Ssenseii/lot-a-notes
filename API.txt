@@ -1,0 +1,78 @@
+API: 
+----
+
+	- Application Programming Interface
+	- Rules and specs that define how two software programs can communicate with eachother.
+	- Example: Weather App uses the Weather API
+	- Uses:
+		+ Get Data from a remote server: Product Info
+		+ Post Data to a remote server: Uploading a picture
+		+ Perform actions: send email, create new account
+
+
+REST API:
+---------
+	
+	- Representation State Transfer Architecture
+	- Set of constraints that define how software systems interact.
+	- HTTP protocole to communicate between client and server apps
+	- use GET, POST, PUT, DELETE
+	- Used to Power many of today's APIs
+	- REST is designed for the web
+	- Main focus of Rest is resources
+	    Resources?
+		+ webpages
+		+ image
+		+ person
+		+ service report...
+	    it means type of information that is going to be transferred 
+	- Web Browsers only support GET and POST, but XMLHTTPREQUEST provides support to all
+
+
+BEST API Design Practice:
+-------------------------
+
+	Main Key Points:
+		+ Developer Friendly
+		+ Extensible
+		+ Up-to-date documentation
+		+ Proper Error Handling
+		+ Provides Multiple SDK
+		+ Security
+		+ Scalability
+
+	
+NODEJS and REST:
+----------------
+
+	- Node uses Google's V8 engine to execute Javascript code on server side
+	- Node supports ASYNC Programming and I/O support
+	- Parallel Flow & Serial Flow
+		+ PF: Run a bunch of nonrelated tasks, and do callback function when all tasks finish
+		+ SF: ability to write clean code and keep it clean
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,19 @@
+JAVASCRIPT CLASSES:
+	
+
+	- Class defines the shape of a type of object, its methods and properties.
+	- Syntax:
+
+		class Rabbit {
+		  constructor(type) {
+			  this.type  = type;
+		  }
+		  
+	  	speak(line){
+			  console.log('the ${this.type} rabbit says ${line}')
+		  }	
+	
+		}
+
+		let killerRabbit = new Rabbit('killer')
+		let blackRabbit = new Rabbit('black')

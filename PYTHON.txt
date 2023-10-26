@@ -1,0 +1,100 @@
+PYTHON:
+-------
+
+	- class names begins with Uppercase
+	- identifier closes with two trailing underscores -> special name
+	- Case Sensitive
+	- start with underscore: _identifier: Private
+
+Reserved words:
+---------------
+
+	- and, exec, not
+	- asset, finally, or
+	- break, for, place
+	- class, from, print
+	- continue, global, raise
+	- def, if, return
+	- del, import, try
+	- elif, in, while
+	- else, is, with
+	- except, lambda, yield
+
+
+Data Types:
+-----------
+
+	- int
+	- long
+	- float
+	- complex
+	- Instead of null we have "None"
+
+
+Operators:
+----------
+
+	- + - * / % ** //
+	- and 
+	- or
+	- you know the rest
+	- there's a priority table
+
+
+Key Functions:
+--------------
+
+	- print()
+	- input()
+
+
+Libraries:
+----------
+
+	- MATH: min, max, pow, round...
+	- CMath: Complex Numbers.
+	- SciPy: Scientific Computation: linear algebra and optimization
+
+Conditionals: 
+-------------
+
+	- if
+	- elif
+	- for i in range(start, end, step)
+	- you caniterate over lines of text
+	- continue: skips 
+	- break: breaks the loop and exits.
+
+Strings:
+--------
+
+	- i = 0 => i = -(word.length)
+	- del string: removes it
+
+
+Lists:
+------
+
+	- List: ['this', 'is', 'to', 'test']
+	- cmp(L1, L2)
+	- len: you guessed it
+	- max: max element
+	- min: min element
+
+
+PROJECT BOOK
+------------
+------------
+
+	- Random number: import random, random.randint(start, end)
+	- List to string: for element in list: str1 += element;
+
+
+
+
+
+
+
+
+
+

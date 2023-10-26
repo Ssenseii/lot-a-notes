@@ -1,0 +1,49 @@
+DESIGN SYSTEMS:
+---------------
+
+	- Thinking in terms of static pages has become unattainable.
+	- We design in a systematic way.
+	- Each design system is different.
+	- Purpose: Defining the key qualities of a good system design.
+
+	- This is all about how to approach your design process in a systematic way.
+
+
+What is it:
+
+	- A set of patterns and practices to serve for a digital product.
+	- Especially important within teams
+	- Each design pattern serves a different purpose.
+	- There are two types of patterns:	
+		+ Functional Patterns: designs influenced by the domain the product belongs to
+		+ Perceptual patterns: TOne of voice, colors, typography...
+
+	- A pattern is a recurring, reusable solution that can be applied to solve a design problem.
+		+ like a dropdown to show a list of options.
+
+	- Most design systems are already established.
+	- New design systems need to be learned and understood.
+	- what makes a design system unique is not it novelty, but how its executed and applied.
+	- Intuition is not always reliable 
+
+	- Main purpose is to create a creative direction
+	
+	- Pattern library: tool that collects the techniques & practices, with guidelines on usability.
+	- Pattern libraries don't fix a bad design.
+
+	- A design system can be considered effective when it combines cost-ef ectiveness in the design process, and efficiency and satisfaction of the user experience in relation to the product’s purpose.
+	
+
+DESIGN PRINCIPLES:
+
+	- Foundations of a functioning system.
+	- Can't be quantified.
+	- focused on either the brand, the team culture or the design process.
+		+ Pinterest: Animated and Unbreakable.
+	- Seperate sets of principles for UX, DX, and brand (DX: Dev Experience)
+	- Or you can have a set of key values.
+	
+	- Qualities of a Design Principle: 
+		+ Authentic and Genuine
+		+ 
+	

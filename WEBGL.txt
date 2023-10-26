@@ -1,0 +1,22 @@
+WEBGL: 
+-----
+
+	- 3D API
+	- Draws points, lines and triangles 
+	- Code is in the form of a pair functions written in GLSL.	
+		+ Vertex Shader
+		+ Fragment Shader
+	- Together they are called a: Program
+	- VS computes vertex positions
+	- FS compute the color for each pixel
+	
+	- The 4 ways a shader can receive data: 
+		
+	1. Vertex Arrays, Attributes and Buffers
+		+ Buffers: Arrays of binary data, can contain positions, normals, texture coordinates...
+		+ Attributes: pull data from buffers and provide to VS.
+	2. Uniforms: Global Variables you set before executing your program.
+	3. Textures: Arrays of data that contain whatever you want them to (image data, colors)
+	4. Varyings: A way for VS to pass data to a FS
+
+

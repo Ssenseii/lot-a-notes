@@ -1,0 +1,789 @@
+THREE JS
+
++ Scene: we add all elements to it
+	- 3d objects
+	- the camera
+	- the lights
+	- the sounds
+	- special effects
+
+	scene = new THREE.Scene();
+
++ Mesh: 3d object
+	composed of: geometry (shape) and material (color, texture and how lighting affects it)
+	
+	geometry = new THREE.CubeGeometry( 1, 1, 1 );
+	material = new THREE.MeshBasicMaterial({
+	color: 0xff0000,
+	wireframe: true});
+	mesh = new THREE.Mesh( geometry, material );
+	scene.add( mesh );
+
+
+BRUNO SIMON's COURSE
+--------------------
+
+	- WEBGL is a javascript API to create triangles at an incredible speed.
+	- uses the GPU
+	- GPU can do thousands parallel calculations / CPU can do really fast but only 1 by 1
+	- 3D models are just triangles at the right place with the right color
+	- Native WebGL is hard but its very low level which is good.
+	- Threejs drastically simplify WebGL (but we can still interact with webGL)
+
+	- Donwload Three.min.js from the github page and script src it.
+	- script src before the script.js
+
+	- Mesh = Material + Geometry -> MeshBasicMaterial + BoxGeometry
+
+	- Always use a build tool to avoid bullshit
+		+ Webpack (most popular)
+		+ Vite (most appreciated) 
+		... 
+	- Vite: 
+		+ write web code -> build the final website
+					- optimize
+					- language support
+					- chache breaking
+					- ...
+
+		+ add plugins (we'll need two later)
+
+
+	- Every thing that inherits from Object3D has 4 properties:
+		+ Position	-|
+		+ Scale		 |
+		+ Rotation	 |
+		+ Quaternion	-|-> these are basically matrixes
+
+	
+	- what is the value 'camera.position.x = 1' ?
+		-> it's whatever you want it to be (1 meter, 1km, 1 cheese...)
+			
+	- Position is a "vector3": class that you can use to position things in space
+		it has many methods
+			+ .length()
+			+ .distanceTo(camera.position)
+			+ .normalize()
+
+	- mesh.position.set(0.7, -0.6, 1) = (x , y , z)
+	
+	- Axes Helper : gives you lines of axis guiding.
+
+	- Rotation and Quaternion
+		(updating one -> updates the other)
+		+ Rotation is Euler: stick through and rotate around it.
+			half a rotation: mesh.rotation.y = 3.14159 
+			full rotation: 2 * 3.14159
+			PI = Math.PI (Pure Javascript)
+			so rotation is mesh.rotation.y = Math.PI * (a value)
+		
+	- You can make groups:
+		new Group => Group.add
+	- Animation: 
+		+ window.requestAnimationFrame(...)
+		+ Adapting to the framerate: we'll use the delta
+			create a time variable  = date.now() outside the function:
+			inside te animation function:   const currentTime = Date.now()
+							const deltaTime = currentTime - time
+  							time = currentTime
+
+		+ You can use the clock built-in function: clock.getElapsedTime()
+		+ Math.sin(elapsedTime)
+		+ getDelta(): Do not Use this.
+		+ You can use GSAP library for better animations
+		+ npm install --save gsap@3.5.1 (--save adds it to the dependency file)
+		+ gsap has its own tick
+ 
+	- Camera:
+		+ stereocamera: for VR things
+		+ cubecamera: 6 renders, reflections and shadow maps
+		+ orthographic cam: render without perspective
+		+ Persepctive cam: normal
+
+		+ we're using orthographic and perspective
+		+ Perspective: FOV in degrees (45-55 is good), Aspect Ratio, near, far 
+		+ orthographic: No perspective: 
+
+	- Built-in Controls:
+		+ Device Orientation Controls: doesn't work on ios for sm reason
+		+ Fly Control: like a spaceship
+		+ First Person Control: can't tilt
+		+ Pointer lock control: look it up
+		+ Orbit controls: You can do whatever you want (blender style)
+		+ transform controls: x, y, z controls for objects
+		+ drag controls: drag stuff around
+
+		+ orbit controls:  
+			import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
+			const controls = new OrbitControls(camera, canvas)
+		+ Damping: controls.enableDamping = true
+	
+	- Fitting in the viewport: 
+		+ position: fixed for the webgl
+		+ overflow hidden for the body and html
+		+ * margin and padding: 0
+		+ inner width and height for sizes
+		
+		window.addEventListener("resize", () => {
+		  /// update sizes
+		  sizes.width = window.innerWidth
+		  sizes.height = window.innerHeight
+
+		  // update camera
+
+		  camera.aspect = sizes.width / sizes.height
+		  camera.updateProjectionMatrix()
+
+  		// update renderer
+  		renderer.setSize(sizes.width, sizes.height)
+		})
+
+	- Blurry renders or stairs effects:
+		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+	- Full Screen:
+		window.addEventListener("dblclick", () => {
+		  if(!document.fullscreenElement){
+		canvas.requestFullscreen()
+		  }else{
+		  document.exitFullscreen()
+		  }
+		})
+	
+	- Geometries:
+		+ Composed of vertices linked to create faces
+		+ each vertex has positions, UVs and normals... you can have anything in em
+		+ there are lots of pre-built ones
+		+ (width, height, depth, widthSegments, heightsegments, depthsegments)
+		+ wireframe = true,  in MeshBasicMaterial
+		+ Float32Array: 
+			- Typed Array, can only store floats, fixed length, easier to handle
+
+	- Debug UI: 
+		+ there are many GUI libraries, or we can create ours
+		+ we're using dat.GUI 
+		+ implementation: npm install --save lil-gui then import * as dat from 'lil-gui'
+			const gui = new dat.GUI
+
+		+ range: numbers with a min and max
+		+ colors: colors with various formats
+		+ text: simple text
+		+ checkbox: boolean
+		+ select: choice from a list
+		+ button: trigger functions
+		+ folder: organize your panel 
+		+ gui.add(mesh.position, 'x', -3, 3, 0.01) (only objects can be tweaked)
+		+ gui.add(mesh.position, 'x').min(-3).max(3).step(0.01)
+		+ We can control visibility
+
+	- Textures:
+		+ Color or albedo: applied on geometry 
+		+ Alpha
+		+ Normals
+		+ Ambient Occlusion: fake shadows in crevices
+		+ Metalness: reflection
+		+ Roughness: light dissipation
+		+ How to load?
+			const textureLoader = new THREE.TextureLoader()
+			const texture = textureLoader.load("./textures/door/color.jpg")
+		+ We can use LoadingManager
+		+ UV unwrapping: each vertex has 2d coordinates
+			we can see them using geometry.attributes.uv
+		
+		+ jpg lossy compression but lighter
+		+ png lossless compression but heavier
+		+ use tinyPNG
+		+ GPU has limited storage, always try to reduce the size of everything
+		+ Texture resolution should be a power of 2. (512 * 512)for example
+		+ lesson 11 - 1:10:00, use of color channels
+		+ Poliigon.com, 3dtextures.me, arroway-textures.ch
+	
+	- Materials:
+		+ used to put color on each visible pixel of the geometries
+		+ written in shaders
+		+ thank god for built-in materials
+		+ MeshBasicMaterial: the most basic
+		+ MatcapMaterial: github.com/nidorx/matcaps
+		+ MeshLambertLight: reacts to light
+		+ MeshToonMaterial: grease pencil looking cartoonish 
+	
+	- 3D text:
+		+ fonts: import typefaceFont from 'three/examples/.../.json'
+		+ in static: create fonts folder
+		+ import {FontLoader} from 'three/examples/jsm/loaders/FontLoader.js'
+		+ const fontLoader = new FontLoader()
+
+	- Lights:
+		const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
+		scene.add(ambientLight)
+
+		const pointLight = new THREE.PointLight(0xffffff, 0.5)
+		pointLight.position.x = 2
+		pointLight.position.y = 3
+		pointLight.position.z = 4
+		
+		scene.add(pointLight)
+
+		+ rect area light only words with standard and physical material.
+
+		+ Baking: you can bake the light into the texture.
+		+ Helpers: you can have helpers for the lights
+		      	new THREE.DirectionalLightHelper(directionalLight, 0.2)
+			scene.add(directionalLightHelper)
+
+	- Shadows:
+		+ How to set em up?
+		+ optimizing shadows is harder
+		+ renderer.shadowMap.enabled = true
+		+ cube.castShadow = true
+		+ plane.receiveShadow = true
+		+ Activate shadows on the lights: point, directional, spotlight (others cant)
+		+ directionalLight.castShadow = true
+		+ Use gui to play around with it
+
+		+ spotlight.position.set(0,2,2)
+			scene.add(spotlight)
+			scene.add(spotlight.target)
+			spotlight.shadow.mapSize.height = 1024
+			spotlight.shadow.mapSize.width = 1024
+			...camera.fov = 30
+			...camera.near = 1
+			...camera.far = 60
+
+		+ Avoid as much shadows as possible
+
+
+
+
+	- Particles:	
+		+ like small plains
+		+ you need geometry, pointsMaterial, but instead of mesh we create Points
+		
+		const particleGeometry = new THREE.SphereGeometry(1,32,32)
+		const particleMaterial = new THREE.PointsMaterial({
+		    size: 0.02,
+		    sizeAttenuation: true
+		})
+
+
+		const particles = new THREE.Points(particleGeometry, particleMaterial)
+
+		scene.add(particles)
+
+		+ custom geometry: 
+		we create a one dimensional array and we put values 3*3
+
+		const particleGeometry = new THREE.BufferGeometry()
+		const count = 500
+		const positions = new Float32Array(count * 3)
+
+		for(let i = 0; i < count * 3; i++){
+		    positions[i] = Math.random() * 10
+		}
+
+		particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
+		const particles = new THREE.Points(particleGeometry, particleMaterial)
+		scene.add(particles)
+
+
+	- Galaxy generator: 
+		+ function: generateGalaxy()
+		+ Object: Parameters
+		+ add count to it 
+		+ buffergeometry()
+		+ create a 32floatarray with (parameters.count * 3) as prop
+		+ for loop from 0 to parameters.count
+		+ create a const i3 = i * 3
+		+ fill positions[i3 + 0 ,+ 1 ,+ 2] with random numbers - 0.5 to center it 
+		+ outside the loop, setAttribute position with (positions, 3)
+		+ create a points material, with a size and attentuation true (add to parameters)
+		+ depthwrite : false, blending; THREE.AdditiveBlending
+		+ const points = new POINTS...
+		+ add tweaks for the parameters: gui.add(parameteres, 'count').min().max().step()
+		+ add a onFinishCahnge(generateGalaxy)
+		+ remove consts from the material, geometry and points
+		+ let geometry , material and points = null
+		+ if(points != null) geometry.dispose() and material.dispose() and scene.remove(pnts)
+		+ better for performance to use squares
+		
+		+ add a parameter for radius  from 0.01 to 20
+		+ in the for loop; const the radius = math.random * parameters.radius
+		+ position [i3 + 0 = radius, others = 0
+		+ paramters.branches, min 2, max 20, step 1
+		+ const a branch angle  = (i % parameters.branches) / params.branches * 2 * PI
+		+ position i3 + 0 = math.cos(angleBranch) * radius
+		+ position i3 + 2 = math.sin(angleBranch) * radius
+
+		+ create a spin parameter
+		+ min -5 max  + 5 step 0.001
+		+ spin angle = radius * parameter * spin
+		+ pos i3 +2, + 0 branche angle + spin angle
+		+ randomness: 0 2 0.001
+		+ random x = math.random - 0.5 * parameter.random (same for y and z)
+		+ i0 and i3 add randomX and randomZ
+		+ i1 randomY
+		+ randomness power 1 10 0.001
+		+ random x = math.pow(math.random, paramaters.randoPower) * (math.rando < 0.5? 1 : -1)
+
+		+ color: paramter.inside Color and outside color
+		+ gui.addColor(insideColor, outside COlor)
+		+ in the material under blending, add a vertexColor= true
+		+ float32 colors
+		+ loop colors[i3 + 0] = 1
+		+ geometry.setAttribute('color'), new three.bufferAttribute(colors, 3)
+		+ out of the loop
+		+ const colorInside = new THREE.Color(parameters.insideCOlor) same for outside
+		+ inside the loop const mixed Color = colorInside.clone()
+		+ mixedColor.lerp(coloroutside, colorOutside, radius / parameters.radius)
+
+
+	- Scroll Animations
+		+ to set the background to a certain color: 
+			in renderer: set alpha to true. and renderer.setClearAlpha(0), then you 
+			color the background however u want in css
+		+ gradientTexture.magFilter = THREE.NearestFilter
+		+ retrieving scroll property: window.scrollY
+		+ we animate the camera, not the mesh: camera.position/y = - scrollY				+ Parallax: get the cursor's values: const cursor = {x, y}
+			window.addEventListener("mousemove", (e) => 
+			{cursor.x = e.client / sizes.width - 0.5;
+			 cursor.y = cursor.clientY / sizes.height - 0.5})
+
+		+ use a temp group to add Parallax Effect
+		+ scrollY check section: current section = 0, scrollY / sizes.height
+			const NewSection = Math.round(scrollY / sizes.height)
+			if they're different => currentSection = newSection
+
+
+
+	- Physics: 
+		+ you can create your own physics with raycaster (threejs built in)
+		+ betetr to use a library for realistic
+		+ hard part is organizing the code
+		+ libraries: 3D library or 2D library?
+		+ 3d: ammo, cannon, oimo
+		+ 2d: matter, p2, planck
+		+ ammo is most used, connon is easy to understand and easy to implement.
+		+ Automating with functions:
+			create a function with props and inside it put the threeJS and Physics Code
+	
+	- Importing Models:	
+		+ Formats: OBJ, 3DS, GLTF
+		+ GLTF: default - multiple files
+		+ GLTF-Binary: heavier - one file
+		+ GLTF-Draco: Buffer data is compressed - lighter
+
+	- Raycaster: 
+		+ detect if there's a wall
+		+ test a fun hit
+		+ test if in 3d, smtg is currently under mouse
+		+ const raycaster = new THREE.Raycaster()
+		+ needs a v3 origin and direction (direction must be normalized)
+		+ raydirection.normalize()
+		+ raycaster.set()
+		+ intersectObject() to test one object
+		+ intersectObjects() to test an array of objects
+		+ raycast.intersect returns an array with an object with data on face, distance, uv...
+		+ test on eachframe: do the whole above in side the tick function
+		+ for( const object of objectstoTest){object.material.color.set('red')}
+		+ for (const intersect of intersects) {intersect.object.material.color.set('#00ff00)}
+		+ raycaster from the mouse, raycaster.setFromCamera(mouse, camera) inside tick
+		+ 'mouse' needs to be configured to go from -1 to +1 
+			window.addEventListener('mousemove), (e) => {
+				mouse.x = e.clientX / sizes.width * 2 - 1
+				mouse.y = - e.clientX / sizes.width * 2 + 1}
+		+ mouseEnter and mouseLeave events, we need a witness variable: 
+			if object intersects, but there wasn't one before: mouseEnter
+			if no object intersects, but there was one before: mouseLeave
+			
+			if intersect.length, if currentIntersect = null then mouseenter,
+				currentIntersect = intersects[0]
+			else if currentINtersect, mouseLeave, currentIntersect = null 
+		+ mouseClick event: window.addEventListen('click', () => {if(currentIntersect)})
+		+ Raycasting with models: 
+			Loading the model: 
+			import {GLTFLoader} from 'three...'
+			const gtlfLoader = new GLTFLoader() (there's a draco loader for draco files)
+			gltfLoader.load('models/duck/binary.duck.glb, (gltf)=>{scene.add(gltf.scene)})
+			you might not see it if u don't have lights
+		+ gltf is a scoped variable, and sometimes they take time to load (web crash)
+		+ we use a let variable outside: model = gltf.scene inside the arrow function
+		+ we can scale, de-position... do all sorts of things
+	
+	- Realistic Render:
+		+ Mesh must be MeshStandardMaterial for realistic
+		+ use directional light
+		+ use gui for intensity and position
+		+ lights are based on arbitrary scale, we need realistic and standrard values
+		+ renderer.physicallyCorrectLights = true
+		+ import GLTFLoader
+		+ gltf.scene.scale.set(10,10,10)
+		+ const cubeTextureLoader = new THREE.CubeTextureLoader()
+		+ const enviMap = cubeTextureLoader.load(["px","nx", "py"...])
+		+ scene.background = enviMap
+		+ after scene instantiation, create a function to update all materials
+			const updateMaterials = () => {
+		scene.traverse((child) => 
+		{if child instanceof THREE.Mesh && child.Material instanceof MeshStandardMaterial{child.material.envMap = enviMap, }})
+		+ call the function inside the gltf inner funtion: ...load(, here)
+		+ renderer.outPutEncoding = THREE.sRGBEncoding  
+		+ enVimap.encoding = THREE.sRGBEncoding
+		+ Tone Mapping: convert HDR to LDR
+		+ renderer.toneMapping = THREE.AcesFilmicToneMapping
+		+ renderer.toneMappingEposire = 3
+		+ Anti-Aliasing: stair-like effect
+		+ SSAA: split a pixel to 4 sub-pixels
+		+ MSAA: split a pixel to 4 sub-pixels but only on the edges.
+		+ inside renderer code -> antialias: true
+		+ renderer.shadowMap.enabled = true
+		+ renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
+
+CODE STRUCTURING FOR BIG PROJECTS:
+----------------------------------
+----------------------------------
+
+		+ CLASSES AND MODULES HELL YESSS
+		+ Class HelloClass {}
+		+ Class PascalCase
+		+ blueprint to create an object, used to create a lot of objects
+		+ Class Robot {}
+		+ const robot = new Robot
+		+ instance of the class Robot, u can create many of it
+		+ Methods: functions inside the class
+		+ class RObot { sayHi(){console.log("hi")} }
+		+ Constructor( ){automatically called when instantiated}
+		+ Constructor (name) {console...(name)}
+		+ this.name = name (it saves the name we gave it)
+		+ name is property of the class
+		+ we can add much more properties
+		+ you can call methods inside the constructor
+		+ inheritance: creating a class from another class
+		+ class FlyBots extends Robot {}
+		+ providing a method with the same name overrides the base
+		+ constructor () {super()}: super is like calling the base constructor (robot)
+		+ new constructor needs to provide the same props as the base constructor
+		+ super.sayHI() : use methods of base
+		+ combining classes and modules: export default Class Robot
+		
+		+ Create a Folder named Experience, in it put Experience.JS
+		+ export default Class Experience.js{Constrcutor() {}}
+		+ All related Classes will be in that experience Folder
+		+ inside Experience constructor = window.experience = this (access from console)
+		+ const experience = new Experience(document.querySelector("canvas.webgl"))
+		+ constructor(canvas) {this.canvas = canvas}
+
+		+ Usefull Classes: Utils
+		+ create Utils Folder, inside it create a sizes.js & class
+		+ export default class Sizes { constructor (){} }
+		+ in experience constructor: this.sizes = Sizes (import it)
+		+ console.log(this.sizes.width)
+		+ Event Emitter: sizes class to trigger events (find it in the big projects folder)
+		+ class sizes extends eventemitter
+		+ ... more to learn, but we have other plans
+
+
+	- SHADERS
+		
+
+		- Main component of WEBGL
+		- Program written in GLSL
+		- Sent to GPU
+		- Position each vertex
+		- Colorize each fragment of that geometry
+	
+		- shaders are composed of vertexes and fragments
+		- very simple but extremely performant
+	
+		- RawShaderMaterial or ShaderMaterial 
+
+		- npm install vite-plugin-glsl
+
+		- GLSL is close to the C language
+		- no console.log
+		- indentation doesn't matter
+		- Typed language, need to define types
+		- all floats must have .
+		- int, bool, vec2, vec3, vec4...
+		- vec2 = vec2(1.0, 2.0)
+		- empty vec2 = vec2(0.0, 0.0)
+		- functions? float Lorem(){}
+		- built-in: cross, dot, mix, step...
+
+		- understanding the vertex shader:
+			void main is called automatically
+			doesn't return shit
+			gl_Position:will contain the thing we want to render
+		coordinates are in clip space (a box)
+		position attribute: contains x, y, z coordinates
+		mat4: matrix 4
+
+		modelMatrix: apply transformations to the mesh: position rotation and scale
+		viewMatrix: camera
+		projectionMatrix: transforms coordinates into clip space coordinates
+		; and order matters
+
+		- udnerstanding fragment shader:
+			mediump is usually used
+			highp performance hit 
+			lowp create bugs because not very precise
+
+
+	- Shader Patterns:
+		+ drawing many patterns from simple gradients
+		+ plane buffer geometry  + ShaderMaterial
+		+ gradient: gl_FragColor = vec4(vUv.x, vUv.x,vUv.x, 1.0);
+		+ repeating: float strength = mod(vUv.y * 10.0, 1.0);
+		+ repeating + clear values = strength = step(0.5, strength);
+		+ grid: float strength = step(0.8, mod(vUv.x * 10.0, 1.0));
+		    strength += step(0.8, mod(vUv.y * 10.0, 1.0));
+		+ grid of dots: strength -= step(0.2, mod(vUv.y * 10.0, 1.0));
+		+ shaft: float strength = abs(vUv.x - 0.5);
+		+ float strength = min(abs(vUv.x - 0.5),abs(vUv.y - 0.5));
+		+ gradient of floored values: float strength = floor(vUv.x * 10.0) / 10.0;
+		+ there is no random function in glsl:
+			    return fract(sin(dot(st.xy, vec2(12.9898,78.233))) * 43758.5453123);
+			strength = random(vUv)
+		+ point corner: float strength = length(vUv)
+		+ center point: float strength = length(vUv - 0.5)
+		+ center point 2 : float strength = distance(vUv, vec2(0.5,0.5))
+		+ pointLight: float strength = 0.015 / distance(vUv, vec2(0.5,0.5)) 
+		+ thin circle: float strength = step(0.01, abs(distance(vUv, vec2(0.5)) - 0.25))		+ inverted thin circle: 1.0 - step(...) 			
+		+ vec2 waveUv = vec2(vUv.x, vUv.y + sin(vUv.x * 30.0) * 0.1) 
+
+
+	- Sea Using Shader:
+	
+		+ material to ShaderMaterial
+		+ create the vertex shader in vertex.glsl
+
+		void main(){
+		vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+		vec4 viewPosition = viewMatrix * modelPosition;
+		vec4 projectedPosition = projectionMatrix * viewPosition;
+
+		gl_Position = projectedPosition;
+		}
+
+		+ create a basic fragment shader
+		+ add both in the basic shader material.
+		+ modelposition.y + = sin(modelPosition.x)
+		+ in material:
+			uniforms:{
+			uTime: {value: 0.0}
+			uBigWavesElevation: {value: 0.2}
+			uBigWavesFrequency: {value: new THREE.Vector2()}
+			uBigwavesSpeed: {value: 0.75}
+			uDepthCOlor: {value: new THREE.Color(debugObject.depthColor)}
+			u... same for surfaceColor		
+		} 
+		
+		+ in vertex.glsl: add Uniform Float uBigWavesElevation
+		+ float Elevation= sin(modelPosition.x) * uBigWavesElevation 
+
+		+ modelPosition.y += elevation
+		+ gui.add(material.uniforms.uBigWaveElevation, 'value')
+		+ vertex.glsl => uniform vec2 uBigWavesFrequency
+		+ float elevation = sin(modelPosition.x * uBigWavesFrequency.x)
+				  * sin(modelPosition.z * uBigWavesFrequency.y)
+				  * uBigWavesElevation 
+		+ gui.add(...value, 'x') and y too
+
+		+ in tick: waterMaterial.unifrms.utime.value = elapsedTime
+		+ unifrm float uTime and add it after bigWavesFrequency.x + uTime and y
+		+ unifrorm float uBigwavesSpeed and add after uTime
+		
+		+ const debugObject =  {}
+		+ debigObject.depthColor: '#0000ff', debugObject.surfaceColor: '#aaaaff'
+		+ gui.addColor(debugObject, 'depthColor').name('depth Color')O.onChange(() => 
+			{waterMaterial.uniforms.uDepthColor.value.set(debugObject.depthColor)})
+		+ same for surface Color
+		
+		+ in fragment: unform vec3 uDepthColor and surfaceColor
+		+ in vertex: varying float vEletation
+		+ vElevation = elevation inside bottom of main
+		+ fragment varying float vElevation
+		+ in main fragment: vec3 Color = mix(uDepthColor, uSurfaceColor, vElevation * 5.0 + 0.5)
+		+ fragColor = vec4(color, 1.0)		
+		+ add a uColorOffset and uColorMultiplyer
+		+ float mixeStrength = (vElevation + uColorOffset) * uColorMultiplier
+		+ vec3 color = mix(uDepthColor, uSurfaceColor, mixStrength)
+		
+
+	- PostProcessing: 
+		
+		+ depth of field, bloom, god ray, effects, reflections, refractions...
+		+ built-in render targets: we'll use EffectComposer Class in threejs
+		+ import {EffectComposer} from 'three/examples/jsm/postprocessing/effectcomposer.js'
+		+ instantiate it: const effectComposer = new EffectComposer(renderer)
+		+ effectComposer.setPixelRation(Math.min(window.devicepixelRatio, 2))
+		+ effectCOmposer.setSize(sizes.width, sizes.height)
+		+ import renderPass, instantiate it, new RenderPass(scene, camera)
+		+ effectComposer.addPass(renderPass)
+		+ in tick function: efectComposer.render() and remove render.rednerScene
+		+ DOtScreenPass: import it from postprocessing
+		+ const dotscreenPass = new DothScreenPass()
+		+ effectCOmposer.addPass(dotScreenPass)
+		+ glitchPass: addPass(glitchPass)
+		+ some need extra work : RGBshiftPass
+		+ import shaderPass from postprocessing...
+		+ import rgbshiftshader from postprocessing
+		+ const rgbshiftPass = new shaderPass(rgbshiftShader)
+		+ effectComposer.add(rgbshiftpass)
+		+ import {gamma correction shader} from 'jsm/shaders'
+		+ gammacorrection = new shaderPass(gammacorrection)
+		+ addPass(gammacorrection) /// fixes colors
+		+ in resize callback function, updateEffectCOmposer: copy the renderer Sizing stuff
+		+ switch renderer with effectCOmposer in that copy
+		+ Fixing AntiAliasing: u need more than one pass active
+		+ const renderTarget = new THREEWebGLRenderTarget(800, 600)
+		+ const effectComposer = new EffectComposer(renderer, renderTarget)
+		+ after 600, {samples: renderer.getPixelRatio() === 1? 2 : 0}
+		+ the more u put there, the worse the performance, 0 means no antialias
+		+ zooming increases your pixelratio
+		+ anti-aliasing pass: FXAA, SMAA, SSAA, TAA...
+		+ more passes: UnrealBloomPasses, instantiate and add.
+		+ unrealBoom.strength, .radius, .threshold
+		
+		+ how to create your own pass?
+		+ provide vertex, fragment and uniforms
+		+ const tintShader = {uniforms: {}, vertexShader: ``, fragmentShader: ``}
+		+ vertex and fragment are the same as always
+		+ uniforms: tDiffuse: {value: null}
+		+ create a vec2 vUv in vertex and fragment
+		+ vertex: vUv = uv
+		+ fragment: uniform sampler2D tDiffuse
+		+ fragment: vec4 color = texture2D(tDiffuse, vUv);
+		+ gl_FragColor = color
+		+ before it, color.r += 0.1, color.b += 0.2...
+		+ new unifrm uTint: {value: null}
+		+ uniform vec3 uTint in fragment
+		+ color.rgb = uTint
+		+ outside: after tintPass, tintiPass.material.uniforms.value = new THREE.vector3()
+		+ play with the vec3
+		+ we can use normals to make passes  
+		+ uNormalMap: {value: null}
+		+ displacementPass.material.unforms.uNormalMap.value = textureLoader.load('texture/')
+		+ unform smapler2D uNormalMap
+		+ vec3 normalColor = texture2D(uNormalMap, vUv).xyx * 2.0 - 1.0;
+		+ vec2 newUv = vUv + normalColor.xyz * 0.1
+		+ vec3 lightDirection = vec3(-1.0, 1.0, 0.0)
+		+ float lightness = clamp(dot(normalColor, lightDirection), 0.0, 1.0);
+		+ color.rgb += lightness * 2.0	
+		+ gl_FragColor = color
+		+ try merging all passes in one, or avoid them all together
+
+	Performance Tips:
+		
+		+ Target Goal: 60FPS at minimum
+		+  two main limitations: CPU and GPU
+		+ always test across multiple devices and the weight of the website
+
+		+ Monitoring: stats.js
+		+ disabling fps limit: there's a BS gist you have to open twice 
+		+ monitoring draw calls: the less, the better		
+			use spectorjs (chrome extension)
+		+ console.log(renderer.info) 
+		+ good javascript code: especially in the tick function
+		+ dispose of stuff in ram. scene.remove, gemoetry.dispose(), material.dispose(à
+		+ use baked lights, or cheap lights (hemisphere, ambient, directional)
+		+ avoid adding them or removing them (lights)
+		+ shadows: avoid, use baked
+		+ optimize shadow maps if u need shadows, reduce the shadowm to only fit the scene
+		+ mapSize(small)
+		+ deactivate shadow update if the scene is static 
+		+ renderer.shadowMap.autoUpdate = false
+		+ renderer.shadowMap.needsUpdate = true /// for first frame
+		+ resizeTextures: reduce the resolution to the minimum while keeping a good result
+		+ keep a power of 2 resolution
+		+ jpg or png (png needed for alpha)
+		+ tinyPNG is good for site size
+		+ geometry and material outside loops (dont regenerate them)
+		
+		+ merge geometries into one: 
+		+ import * as buffergeometryutils from "..."
+		+ const geometries = []
+		+ geometry.translate(x,y,z)
+		+ geometrues.push(geometry)
+		+ const mergeGeometry = BufferGeometry.mergeBufferGeometries(geometries)
+		+ mesh(mergedGeometries, material)
+	
+		+ useCheapMaterials: Basic, lambert, phong
+		+ InstancedMesh:
+		+ const mesh = new THREE.instancedMesh(geometry, material, 50) (outside loop)
+		+ for loop: const matrix = new THREE.Matrix4()
+		+ mesh.setMatrixAt(i, matrix), look at documentation for more info
+		+ lowpoly models, if u need details use normal maps
+		+ draco compressions for the very detailed models
+		+ gzip is server side compression, use it on gltd, obj and glb (very important)
+		+ FOV: frustum culling (reduce the fov)
+		+ near and far: reduce
+		+ pixelration renderer (min(window.devicePixelRatio(), 2))
+		+ powerPreference in the renderer object: 'high-performance'
+		+ anti-alias: only add it if you have lots of it
+		+ regroup your custom passes into one
+		+ shaders: specify the precision: 'lowp' in the object of ShaderMaterial()	
+		+ keep code simple inside the shaders, avoid if statement
+		+ use the smtg.xyz swizzles (personal projects or leave documentation)
+		+ perlin noise is bad for performance
+		+ use defines
+		+ avoid uniforms (not really but this is like super optimizing)
+		+ or int he sahderMaterial object: defines: {SOMETHING: 1.5}
+		+ do the calculations in the vertex shader then send the result to the fragment shader
+		+ Lewy blue, threejs tips and tricks
+
+		+ just be smart, like Mr.Simon
+
+
+	- Intro and HTML loader
+		+ Overlay fadout?
+		+ keep everything inside webgl
+		+ const overlay geometry plane 1 1 1 1
+		+ material basic red
+		+ mesh it and add it 
+		+ change to shader material
+		+ in vertex remove the viewModelMatrix and the projectionMatrix
+		+ switch geometry to 2 2 1 1
+		+ change to black FragColor
+		+ transparent: true in ShaderMaterial Object
+		+ shaderMaterial object: uniforms: uAlpha: value: 0.5
+		+ put it in fragColor (uniform float uAlpha)
+		
+		+ we want to know when everything is loaded
+		+ loadingmanager: new three.loading Manager
+		+ inside the loader add the laoding manager
+			gltfLoader = new GLTFLoader(loadingManager)
+		+ lets use GSAP
+		+ gsap.to(overlayMaterial.uniforms.uALpha, {duration: 3, value: 0})
+		+ we need to simulate normal bandwith
+			devtools -> network tab (check disable cache)-> online value dropdown -> add 
+			-> add custom profile 
+			-> name it "pretty fast"
+			-> Download value to 100000
+			-> close the panel; choose that value in dropdown menu
+
+		+ in the progress callback (second argument) there are three props
+		+ (itemUrl, itemsLoaded, itemsTotal)
+		+ u can calculate its progress using itemsLoaded / itemsTotal
+		+ style.transform = backticks the progress ratio
+		+ smoothin the animation: css transition, transform 0.5s ease-in whatever
+		+ in loaded add an ending class: .classList.add('Ended') & s.transform = " "
+		+ in loaded, window.setTimeout(() => {... all the above in loaded}, 500)
+		+ mixing HTML and WebGL is bad for performances, try to avoid it 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,71 @@
+Microsoft FLUENT 2:
+-------------------
+
+	- each UI kit in figma contains styles specific to that pkatform.
+
+
+Design Principles:
+
+	- set of values that express a shared vision and help guide decision making. 
+	- grounded in our deep understanding of how customers navigate the world,
+	
+	- Natural on every platform: build on the familiar everywhere.
+		+ layout aware of the screen size.
+		+ Allows for re-use 80% of the time to focus on signature experience
+	- Built for Focus, drawing you forward
+		+ Less visual clutter and noise keeps people centered, calm, and confident.
+		+ products shouldn’t get in the way of people performing in their terms
+	- One for all, all for one
+		+ variety of people... honestly I fail to see this one
+		+ when you're included, you feel like u belong (I have no clue)
+	- Unmistakably Microsoft
+		+ distinctive microsoft feel: color, sounds, icons...
+		+ a little personality goes a long way
+
+
+Windows 11:
+
+	- Effortless, Calm, personal, Familiar, Complete + Coherent
+	- Geometry: 
+		+ shape, size and position
+		+ 8px for top level, 4px for buttons and lists, 0 for intersections and maximized
+	- Color: 
+		+ Dark & Light: neutral color values adjust to ensure oprimal contrast
+		+ Accent is used to emphasize important elements
+	- Elevation: 
+		+ window, Dialog: 128
+		+ Flyout: 32
+		+ tooltip: 16
+		+ card: 8
+		+ control: 2
+		+ layer: 1
+
+		+ rest and hover: 2
+		+ pressed: 1
+	- Material: visual effects applied to UX surfaces that resemble real life artifacts
+		+ Acrylic: frosted glass, flyouts and context menus
+		+ Mica: Opaque material, tinted subtly with the background color of desktop
+		+ Smoke: emphasize on UI above by dimming beneath
+	- iconography:
+		+ Application: icons should represent your app's core functionality through a metaphor
+		+ System:  Segoe Fluent Icons, stroke of 1epx, 16*16
+			- Minimal; necessary details
+			- harmonious: simple shapes
+			- Evolved: modern metaphors 
+			- base icon + modifier icon
+			- Layering foo active or inactive
+	- Typography:
+		+ Segoe UI Variable
+		+ see typography in learn.microsoft.com
+
+
+
+
+
+
+
+
+
+
+
+

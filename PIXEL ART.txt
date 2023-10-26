@@ -1,0 +1,28 @@
+DO's: 
+
+	- use hueshifting
+	- use antialysing
+	- have a limited color palette
+	- ease in out
+	- pixel perfect lines and curves
+	- dark colors
+	- use contrast
+	- shade with form
+	- outline exterior when required
+ 	- use simple flat colors
+	- use small canvas
+	- 
+
+DON'Ts: 
+
+	- use the same hue
+	- overuse Antialyzing
+	- use every color in the book
+	- use linear animations
+	- jagged or doubles (misplaced pixels)
+	- dont use black for outlines
+	- use close together shades
+ 	- pillow or pancake shade (from dark to light... like topography)
+	- outline all the times
+	- use soft brushes and gradients
+	- use large canvas

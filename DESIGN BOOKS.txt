@@ -1,0 +1,120 @@
+Designing and Prototyping:
+--------------------------
+--------------------------
+
+	- Figma is composed of Design and Figjams
+	- Research and Analytics in design is the first step
+		+ Gathering and analyzing data using Figjam
+		+ Creating a moodboard
+		+ functional user flow with Figjam tools
+
+	- Devoting a significant time to research
+	
+Design Research: 
+----------------
+	1. Mission Statement is the first thing to highlight.
+		(Look up Google's, Facebook's, Apple's, Ikea's)
+	2. Competitor Research and Analysis.
+		+ Functionalities
+		+ Design patterns
+		+ Conventions	
+		+ Negatives
+	
+	how to study competitors: 
+		+ Take screenshots
+		+ Exploring products
+		+ Noting interesting solutions
+		+ collecting own notes and comments
+		
+	Moodboard: 
+		+ Anything that is getting your attention
+		+ Pinterest is your best friend (behance too)
+		+ feel free to add whatever
+	
+	User Personas: 
+		+ Define a target
+		+ Who is this product for?
+		+ Interview and poll
+		+ Create Fictional Descriptions of Users
+		+ Use it as Guideline
+		+ Don't trust your intuition
+		+ Use Empirical methods based on data
+		+ Careless User definition leads to project failure
+		+ Persona must include: Needs, Goals and Frustrations
+		+ Persona should never represent people you know
+
+
+
+USER FLOW :
+-----------
+
+	- UX is far closer to marketing and psychology
+	- Understnading your user and analyzing their behavior
+	- Be the user
+	- ALWAYS remember the purpose of the product and whom it serves
+
+
+Notes:
+------
+
+	- Don't Design an interface until you know the content.
+	- without real content, there is always a risk of creating a beautiful container that is unsuitable for placing the final data in
+	- Request a demo sample of the display data (in our case, create one but not artificially)
+	
+
+
+WIREFRAMING A MOBILE EXPERIENCE:
+--------------------------------
+
+	- moving from theory and hypotheses to creating a real application structure using the wireframe method!
+
+Why wireframe?
+--------------
+
+	- takes place before the prototype design
+	- wireframing is a crucial part of the process 
+	- A designer's job is mostly about research, analysis, and problem-solving rather than creativity
+
+
+	- Wireframe: It's the first draft pf a raw UI without any style, detail or color.
+	- Done with Pen and Paper (at times: figma)
+	- if you skip wireframing: problems reveal themselves at the final product.
+	- The essential meaning of this part is to make sure the flow you came up with during the UX design phase is the best one for your user	
+	
+Why mobile first?
+----------------
+
+	- Choose the smallest format (usually mobile)
+	- People use their phones more than they use their desktop PCs
+	- grainy, low-quality images should be absolutely avoided in production
+
+
+
+DESINGING CONSISTENTLY USING GRIDS, COLORS and TYPOGRAPHY:
+----------------------------------------------------------
+	
+	- A good designer will not let personal taste affect a product.
+	- design must be done with precision
+ 	- No longer working with random frame sizes
+
+GRIDS: 
+	- Shift + R: Activate Rulers in figma
+	- 12 cell layout?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

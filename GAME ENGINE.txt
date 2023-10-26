@@ -1,0 +1,34 @@
+HOW DO YOU MAKE A GREAT VIDEO GAME?
+-----------------------------------
+
+	- Technical Design
+	- Game Mechanics
+	- Systems Design
+	- Level Design	
+	- Interaction Model (HUD + any interaction)
+	- Game Setting (plot essentially)
+	- Visual Design
+	- Audio Design
+	- Meta-Game (story or score)
+
+
+GAME ENGINE:
+------------
+
+	- Includes many self-contained subsystems
+		+ Geometry ss
+		+ Resource Management ss
+		+ Physics ss
+	- Engine has one instance of each
+	- all modules and instance variables start with m
+	
+
+
+
+
+
+
+
+
+
+

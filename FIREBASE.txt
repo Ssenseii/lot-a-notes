@@ -1,0 +1,222 @@
+PROJECTS, APPS, PRODUCTS:
+
+	- hierarchy of firebase projects
+		
+		+ PROJECT: container for everything;
+		| 
+		|- Firebase Apps;
+			| 
+			|- Firebase Service -|
+			|- Firebase Service  |
+			|- Firebase Service  |--> Provided by the project;
+			|- Firebase Service -|
+	
+	- Billing Plan: Spark pricing plan: 5 - 10 projects
+	- The complete deletion of a project requ. 30 days & counts towards the quota til the project's deleted.
+	- FireBase Project can have: 30 Apps
+	- Hosting support of 36 stes per project.
+	- All apps registered to a Firebase project share and access the same data as well as the resources and services provisioned for the project
+
+- ENVIRONMENTS: 
+	
+	- An environment is all the hardware and software needed to run an instance of an app.
+	- The process of progressing a release through these environments is called a deployment pipeline.
+		+ dev env: safe isolated space to develop and test?
+		+ test env: space to run tests and rest data.
+		+ staging env: environement that mimics production infastructure as closly as possible.
+		+ production env: single place where users interact with the app instance.
+
+	- Best Practices: 
+		+ platform variants of the same app must be registered to the same project.
+		+ multiple builds that share the same resources, same variants project (works for us perfectly)
+		+ free and paid: same project
+		+ debug vs release build: different projects.
+			(debug data might pollute or override prod. data)
+		
+		+ Avoid multi-tenancy: independant apps in the same project.
+			(issues include: analytics aggregation, shared authentication, overcomplex DBs...)
+	
+	- Security Guidelines: 
+		+ Limit access to pre-prod env.
+			(blocking functions or temporary preview URLs)
+		+ Firebase Local Emulator Suite for Localhost emulation instead of cloud resources.
+		+ Set up firebase security rules in pre-production env.
+		+ for production environements: enfore APP CHECK and write Robust security rules
+			(if you're unsure, start with this: https://firebase.google.com/codelabs/firebase-rules#0)
+		+ Run through this: (https://firebase.google.com/support/guides/launch-checklist)
+
+
+SELECTING LOCATIONS:
+
+	- Google Analytics: sets the currency for revenue reporting, does not affect the rest
+	- Cloud FireStore: just pick default
+	- Scheduled Functions: Read Docs;
+	- Realtime Database: each instance can be a different location
+		(Highly recommend reading the docs on specific locations)
+		
+
+BILLING:
+	
+	- Two main plans: Spark and Blaze
+	- Pay-As-You-Go for Blaze (for any additional uses)
+	- Project Based. (some can Blaze, some can Spark)
+	- for the spark plan: you basically get everything... but:	
+		+ If you exceed the no-cost quota limit in a calendar month for any product, your project's usage of that specific product will be shut off for the remainder of that month.
+		+ applies to all apps in that project.
+		+ to get access again, wait for the next billing cycle or... UPGRADE!!!
+		+ Paid google cloud products aren't available.
+	- for the blaze plan : Fill this when you go professional, for now it's useless
+	
+	- to upgrade: all you have to do is a add a cloud billing account.
+	- to avoid suprise costs: 
+		+ test locally first
+			+ add a limit to a database query with millions of results
+			+ cloud functions that cause excessive fan-out workloads and infinite loops.
+		+ view usage and spending levels:
+			+ set-up budget alerts
+
+
+
+------------------------------------------------------------------------------------------------------
+
+AUTHENTICATION: 
+
+	- provides backend services and ready made UI lobraries.
+	- Supports authentication using:	
+		+ Passwords
+		+ Phone Numbers
+		+ Popular federated identity providers
+	- look up: OAuth 2.0 and OpenID
+	- Capabilities:	
+		
+		- FirebaseUI: drop-in already made sign in system
+		- Firebase SDK authentication: 
+			+ Email and Password Authentication
+			+ Federated Identity provider
+			+ phone number authentication
+			+ custom auth system
+			+ ananymous auth system
+	- for Spark: 3000 daily active users (24 hour period)
+	- How does this work?
+		get authentication credentials, pass them through the firebase auth sdk, the backend services will 		verify them and return a response to the client.
+	- Implementation Paths: 
+		+ FirebaseUI: 
+			1. set up sign-in methods
+			2. customize sign-in UI.
+			3. use Firebase UI to perform the sign-in flow.
+		+ Firebase auth SDK
+			1. same
+			2. same
+			3. pass the user's credentials to the firebase auth SDK.
+  
+
+	- How to build an authentication system with Firebase?
+		Fastest and easiest is to use FirebaseUI auth.
+	- To have full control though:
+		There are so many options. go to the docs and read 'where do I start' in build/authentication.
+
+	- FirebaseUI:
+		+ multiple providers
+		+ Account Linking
+		+ Customization
+		+ One-tap sign-up and automatic sign-in
+		+ localized UI (+40 languages)
+		+ Upgrading anonymous users
+
+
+
+	Set up firebase with react: 
+		+ create a folder called components
+		+ add another folder inside it called auth
+		+ add SignIn.jsx
+		+ rafce
+		+ form with two inputs 
+		+ useState for Email
+		+ useState for Password
+		+ value for inputs would be the states accordingly
+		+ add onchange function to inputs (onchange{(e) => setEmail{e.target.value}})
+		+ button of type submit
+		+ add a function called signIn
+		+ pass it to the form 'onSubmit'
+		+ import {auth} from '../../firebase'
+		+ in the sign in function: e.preventDefault();
+		+ import signinwithemailand password from 'firebase/auth'
+		+ Sign in function should look like:
+
+			const SignIn = ()  => {
+		e.preventDefault();
+		signInWithEmailAndPassword(auth, email, password)
+		.then ((userCredentials) => {console.log(userCredential)})
+		.catch((error) => {console.log(error)})
+		}	
+
+		+ Create a SignUp jsx file
+		+ use The same form as above but we'll modify it to create a user
+		+ import Create UserWIthEmailAndPassword
+		+ Function will be called SignUp
+		+ Change it in OnSubmit
+		+ Fix accordingly 
+		+ should be working now
+		+ create new file: AuthDetails.jsx 
+		+ import useEffect to check state of sign in or out
+		+ import auth from firebase
+		+ add useState for state of user
+		+ const [authuser, stateAuthuser] = useState(null)
+		+ the useEffect should look like this:	
+			
+			useEffect(() => {const listen = onAuthStateChanged(auth, (user) => {
+				if (user) {
+					setAuthUser(user)
+				} else {
+					setAuthUser(null)
+				}
+			})
+		})
+
+		+ conditional return {authUser ? "Signed In" : "Signed Out"}
+		+ SignOut button: 
+
+		const SignOut = () => {
+			signOut(auth).then(() => {console.log(success)}).catch((error) => {...})
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

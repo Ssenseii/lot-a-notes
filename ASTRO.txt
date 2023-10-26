@@ -1,0 +1,54 @@
+ASTRO
+-----
+
+Start: 
+	npm create astro@latest
+	npm install
+	npm run dev
+
+
+Project Folders:
+	- Pages: required sub-directory 
+ 	- Styles
+	- Layout
+	- Components
+	- Content
+
+Component Structure: 
+	- written between "---"
+	- import Astro Components
+	- Import Data like jSON
+	- fetch content from an API
+	- create variables that will reference in your template.
+	- safely write code here that is expensive or sensitive
+
+Component template:
+	- HTML output
+	- <slot /> -> where children go for wrappers.
+
+Pages: 
+	- support for:	
+		+ astro
+		+ md
+		+ mdx
+		+ html
+		+ js or ts
+	- File based routing
+	- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

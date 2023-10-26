@@ -1,0 +1,6 @@
+SOLID:
+	- Single Responsibility Principle: class should do one thing only
+	- Open/Closed Principle
+	- Liskov Substitution Principle
+	- Interface Segregation Principle
+	- Dependency Inversion Principle

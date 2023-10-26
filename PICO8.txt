@@ -1,0 +1,109 @@
+PICO-8:
+-------
+
+	- Shell writes in Lua
+	- 128 x 128 size screen - 16 color palette
+	- Lua (max 8192 tokens of code)
+
+SHORTCUTS: 
+----------
+
+	ALT+Enter: Fullscreen	
+	Ctrl + R: Run / Restart
+	Ctrl + S: Save
+	CTRL + M: Mute
+	Enter P : Pause
+	CTRL + 7: Capture Label Image 
+	Esc: Toggle between "Console" and "Editor"
+	Alt + -> / <-: Switch between editors
+ 	Ctrl + B: Comment / Uncomment
+
+CMD Commands:
+-------------
+
+	Folder
+	CD ..
+	MKDIR "Folder Name"
+
+Default Location for carts: 
+	C:/Users/saada/AppData/Roaming/pico-8/carts
+
+Exporting and Importing PNG and WAV: 
+-----------------------------------
+
+	Import Blah.png -- expects 128x128 png and fits the pico 8 palette
+	Export Blah.png -- use Folder to find it 
+
+
+	Export Foo.wav
+	Export Foo$D.wav -- Exports all the sfxs
+
+
+	> EXPORT FOO.MAP.PNG
+	> EXPORT FOO.LUA.PNG
+
+
+	Export Mygame.html
+	Export mygame.js
+
+	Export Mygame.bin -- for standalone executables
+
+
+LUA: 
+----
+
+	Num = 12
+	S = "this is a string"
+	B = FALSE
+	T = {1 ,2 , 3}
+
+	IF NOT B THEN
+	  PRINT("B IS FALSE")
+	ELSE
+	  PRINT("B IS NOT FALSE")
+	END
+
+	IF X == 0 THEN
+	  PRINT("X IS 0")
+	ELSEIF X < 0 THEN
+	  PRINT("X IS NEGATIVE")
+	ELSE
+	  PRINT("X IS POSITIVE")
+	END
+
+	~=  not equal
+	==  equal
+
+	FOR X=1,5 DO
+	  PRINT(X)
+	END
+	-- PRINTS 1,2,3,4,5
+
+	X = 1
+	WHILE(X <= 5) DO
+	  PRINT(X)
+	  X = X + 1
+	END
+
+
+PICO 8 Structure: 
+
+	_update(): once every 30fps
+	_update60(): once every 60fps
+	_ draw(): once per visible frame
+	_init(): once per program startup
+
+	RND(x): Random number from 0 to 8
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+GODOT - 4 Projects
+------------------
+
+	- Write down ideas and try them out after you've finished the basic project
+
+
+Project Manager: 
+	- filename rules: 
+		+ describe what the game is
+		+ no spaces, use _ between words
+	- GOdot is written in C++
+
+Nodes:
+	- basic building blocks for creating games
+	- contains a collections of properties
+	- organized as a tree structure, a tree of nodes is a scene
+	- nodes can be extended by attaching scripts to the node
+	- 
+
+
+Scenes:
+	- Used to organize the various game objects
+	- player scene, map scene...
+	- Benefits of a seperate "example" is that you can test it independantly
+
+
+Scripts:
+	- GDScript or C#
+	- GDScript is better, tightly integrated with its API and designed for rapid Development
+
+GDScript: 
+	- Modeled after Python
+	- User friendly
+
+
+EDITOR: 
+	- Mode: Canvas_items - if user resizes, everything will scale appropriately
+	- resizable can lock the resizing once and forever
+	- order matters when adding background and player and...
+
+Keyboard shortcuts: 
+	- Add Scene = Ctrl + A
+	- Save Scene = Ctrl + S
+	- Symetrical shaping = Alt + mouse
+	- Create a new scene: Scene -> new scene
+
+Delta:
+	- elapsed time since previous frame (movement speed remains consistent regardless of the frame rate)
+
+Signals:
+	- a way for nodes to send out messages that other nodes can detect.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

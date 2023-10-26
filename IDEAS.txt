@@ -1,0 +1,13 @@
+IDEAS: 
+
+	- recreate a website like realtime colors.
+	- Search Engine
+	- Inkdrop clone
+	- Components Library.
+	- Horror game (think DDLC)
+
+Profolio:
+
+	- Website that uses Algorithm
+	- Machine Learning
+	- Atari Game (Pacman, Tetris...)

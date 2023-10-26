@@ -1,0 +1,11 @@
+VISITOR PATTERN:
+----------------
+
+	- Behavioral Pattern
+	- Seperate the algorithm from the object the algorithm is working on
+
+roles:
+	
+	- The visitor interface: set of operations that can be performed on an object
+	- The concrete visitor classes: implement the visitor interface and provide specific implementations on the operations
+	- The cisitable ibjects: define a method that accepts a visitor and invokes the appropriate operation on the visitor

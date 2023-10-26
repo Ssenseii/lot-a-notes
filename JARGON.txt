@@ -1,0 +1,7 @@
+API: Application Programming Interface = a power socket is like an api, better than plugging lines directly
+
+SSL Certificate: Secure Socket Layer = digital document signed by a trusted third party certificate authority saying who the server is. uses encryption keys.
+
+SDK: Software Developement Kit = set of tools that developers use to make something for a certain environement
+
+RSA: Rivest - Shamir - Adleman = public key cryptosystem used for secure data transmission.

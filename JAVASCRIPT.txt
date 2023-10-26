@@ -1,0 +1,23 @@
+JAVASCRIPT:
+-----------
+-----------
+
+	let object = {
+		x: 0,
+		y: 0,
+		z: 0
+	}
+
+	object.keys => x, y, z
+	Object.assign(object, {x: 1, w: 1}
+	
+	- unshift: push at start of array
+	- "OH".repeat(3) = "OHOHOH"
+
+	- Abstraction: function repeat(n, action){for let i < n i ++}{action(i)}
+		the second argument can be an arrow function
+	
+	- filtering array: function filter(array, test) let passed, for element of array 
+		if test(element) passed.push(element) return passed
+		
+	- transforming with Map

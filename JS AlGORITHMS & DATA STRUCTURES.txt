@@ -1,0 +1,104 @@
+JAVASCRIPT UNIQUE PARTS:
+	
+	- VAR can be used inside functions, and will return that value.
+	- var a = 1, then inside a function = 4, then it'll return 4 
+	- LET is block scoped.
+	- false, 0, empty strings, NaN, undefined, null -> return false if truth checked in if.
+	- === checks the type of the variable too. more accurate.
+	- == doesn't check the type.
+	- if you want to compare objects, use a comparing function that runs through the props.
+
+- NUMBERS:
+
+	- 32 bit floating point representation
+	- sign = 1 bit, exponent = 8bit, fraction: 23 bit
+	- Math.floor: rounds down to nearest integer
+	- Math.round: rounds to nearest integer
+	- Math.ceil: rounds up to nearest integer
+
+	- Number Algorithms: 
+		+ Prime Numbers: 
+			if(n <= 1)return false
+			for(var i =2; i < n; i++){if(n%i == 0) return false;} return true;
+		+ Check if Prime Number:
+			if n <= 1, return false
+			if n <= 3 return true
+			if n%2 == 0 || n%3 == 0 return false
+			for (var i = 5; i*i <=n; i = i+6) if n%i == 0 || n % (i+2) == 0 return false
+			return true;
+		+ Prime factorization:
+			while (n%2 == 0) {n = n/2}
+			for(var i = 3; i*i <= n; i = i+2){while(n%i == 0){n = n/i}}
+			if(n>2) console.log(n)
+		+ Random Number generator
+			Math.random() * 100
+			Math.random() * 25 + 5 -> 5 - 30
+			Math.random() * 10 - 100 -> -100 - -90
+			always add Math.round/floor/ceil to avoid floating points
+	
+	- If you're doing large exponential calculations, consider a for loop.
+
+- JAVASCRIPT STRINGS:
+
+	- to access characters: 'dog'.charAt(1) => 'o'
+	- to access a portion: 'Youtube'.substring(3,7) => 'tube'
+	- to find the index of something: 'Red Dragon'.indexOf('Dragon', 0); 
+	- to decompose a string into an array: word.split(',')
+	- an empty seperator will decompose to every letter.
+	- "wizard of oz".replace("wizard" , "witch");
+	- RegEx is on a league of its own
+		+ /\d+/: test for any numerical characters
+		+ /^\d+$/: test for only numerical characters
+		+ /^[0-9]*.[0-9]*[1-9]+$/: test if its a float
+		+ /[a-zA-Z0-9]/: test for only alphanumerical characters
+	- a byte = 8 bits
+	- RSA encryption: algorithm for encryption, has many steps you should memorize
+
+- JAVASCRIPT ARRAYS:
+
+	- arr.push(5) = adds to the end
+	- arr.pop(5) = removes the last, returns it too.
+	- arr.shift(1) = removes first element, returns it too
+	- Methods of array iteration: 
+		+ for(var i = 0; i < arr.length ;i++)
+		+ while(counter < arr.length){...; counter ++}
+		+ for(var index in arr) -> pass using index
+		+ for(var element of array) -> pass using element
+		+ forEach((element, index) => {})
+
+	- arr.slice: returns a portion of the arr starting with the start index
+	- to create a new array from arr => Array.from(arr)
+	- arr.splice (1,2) => returns the spliced elements, arr doesn't have those elements anymore
+	- array1.splice(1,2,5,6,7); //returns [2,3],array1 = [1,5,6,7,4] 
+	- arr.concat([1,2,3]) adds elements to the end of the array
+	- spread operator:	
+
+		function addFourNums(a, b, c, d) {
+		 return a + b + c + d;
+ 		 }
+ 		 var numbers = [1, 2, 3, 4];
+ 		 console.log(addFourNums(...numbers));
+
+	- arr.map(() => {})
+	- arr.filter (() => {})
+	- arr.reduce ((prevVal, currentVal, index, array) => {prevVal + currentVal})
+	- Multi-Array: [[],[],[]]
+
+
+- JAVASCRIPT OBJECTS: 
+	- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

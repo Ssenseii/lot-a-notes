@@ -1,0 +1,35 @@
+- use enters search keywords
+- find relevant sites
+- display a list
+
+needed: 
+	- you
+	- api handles the request
+	- database of every site on the internet
+	- crawler that goes through the internet
+	- urls
+
+Problem solving for each one of those:
+
+API: 
+	- search query
+	returns list, title, description, and url
+
+DATABASE:
+	
+	- URL
+	- Content
+	- title
+	- description
+	- hash (save on space)
+	- last updated
+	- priority
+
+scale:  - 1 trillion pages (200PBytes)
+	- 100 billion unique pages
+	- updated once every 10 days
+	- average page is 2mb (yeah sure.)
+	- different query patterns 
+
+holy shit.
+

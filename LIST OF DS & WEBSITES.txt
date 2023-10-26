@@ -1,0 +1,22 @@
+Popular Sites: 
+	+ Instagram
+	+ Youtube
+	+ Tiktok
+	+ twitter
+	+ wikipedia
+	+ Google
+	+ Facebooks
+	+ Amazon
+	+ Netflix
+	...
+
+Popular Design System:	
+	+ Google's Material Design
+	+ Apple's High IG
+	+ Microsoft Fluent Design (2)
+	+ IBM's Carbon DS
+	+ Spotify's Polaris
+	+ Uber
+	+ Ant (Alibaba I think)
+	+ Samsung's ONE UI
+	...
